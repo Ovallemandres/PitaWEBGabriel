@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pita Logística Internacional | Envíos desde China a Venezuela</title>
+    <meta
+      name="description"
+      content="Pita Logística Internacional: tu aliado para traer compras desde China a Venezuela de forma segura, rápida y transparente."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#" class="logo" aria-label="Pita Logística Internacional">
+          <img src="./assets/logo.png" alt="Pita Logística Internacional" class="logo-img" />
+        </a>
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="header-nav-wrapper" id="headerNavWrapper">
+          <nav class="nav">
+            <a href="#cotizar">Cotizar</a>
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#rutas">Rutas</a>
+            <a href="#calculadora">Calculadora</a>
+            <a href="#testimonios">Experiencias</a>
+            <a href="#faq">Preguntas frecuentes</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
+          <div class="header-actions">
+            <a class="btn btn-link-pita" href="https://www.pitacompra.com" target="_blank" rel="noopener noreferrer" title="Pita Compra">
+              <img src="./assets/pita-express.png" alt="Pita Express" class="btn-pita-logo" />
+              Pita Compra
+            </a>
+            <a class="btn btn-link-intranet" href="#" id="linkIntranet" target="_blank" rel="noopener noreferrer" title="Intranet Pita Logística">
+              Intranet
+            </a>
+            <a class="btn btn-outline" href="#cotizar">Cotizar</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="cotizar" class="hero">
+        <div class="container hero-inner">
+          <div class="hero-content">
+            <span class="hero-badge">Logística internacional de confianza</span>
+            <h1>
+              Tu puente seguro
+              <span class="accent">China &rarr; Venezuela</span>
+            </h1>
+            <p class="hero-subtitle">
+              Centraliza tus compras en China y recibe en Venezuela con la
+              confianza, claridad y soporte que tu negocio necesita.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary btn-lg" href="#cotizar">
+                Cotizar envío
+              </a>
+              <a class="btn btn-ghost btn-lg" href="#como-funciona">
+                Ver cómo funciona
+              </a>
+            </div>
+            <div class="hero-quicklinks">
+              <a class="quicklink" href="https://www.pitacompra.com" target="_blank" rel="noopener noreferrer">
+                <img src="./assets/pita-express.png" alt="Pita Express" />
+                Pita Compra
+              </a>
+              <a class="quicklink" href="#" id="linkIntranetHero" target="_blank" rel="noopener noreferrer">
+                Intranet
+              </a>
+            </div>
+            <div class="hero-trust">
+              <div class="trust-item">
+                <span class="trust-number">7+</span>
+                <span class="trust-label">años moviendo carga</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-number">48 h</span>
+                <span class="trust-label">para confirmar recepción en China</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-number">Tracking</span>
+                <span class="trust-label">actualizado en cada etapa</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-form-wrapper">
+            <div class="hero-form-card">
+              <h3>Cuéntanos qué quieres traer desde China</h3>
+              <p class="hero-form-intro">Completa el formulario y un asesor te contactará para armar la mejor ruta para tu carga.</p>
+              <form class="quote-form quote-form-hero" id="quoteForm">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="nombre">Nombre completo</label>
+                    <input id="nombre" type="text" placeholder="Tu nombre" required />
+                  </div>
+                  <div class="form-field">
+                    <label for="correo">Correo electrónico</label>
+                    <input id="correo" type="email" placeholder="tu@correo.com" required />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input id="whatsapp" type="tel" placeholder="+58 XXX XXX XXXX" />
+                  </div>
+                  <div class="form-field">
+                    <label for="origen">Origen (China)</label>
+                    <input id="origen" type="text" placeholder="Guangzhou, Yiwu, Shenzhen..." />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="destino">Destino (Venezuela)</label>
+                    <input id="destino" type="text" placeholder="Valencia, Caracas, Maracay..." />
+                  </div>
+                  <div class="form-field">
+                    <label for="tipo">Tipo de mercancía</label>
+                    <input id="tipo" type="text" placeholder="Ropa, electrónica, etc." />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="peso">Peso / Volumen</label>
+                    <input id="peso" type="text" placeholder="Ej: 80 kg o 0.5 m³" />
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="detalles">Detalles adicionales</label>
+                  <textarea id="detalles" rows="2" placeholder="¿Proveedor? ¿Fecha estimada?"></textarea>
+                </div>
+                <button type="submit" id="btnEnviarCotizacion" class="btn btn-primary btn-full">Enviar solicitud</button>
+                <p class="form-note" id="formFeedback"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMO FUNCIONA -->
+      <section id="como-funciona" class="section how-it-works">
+        <div class="container">
+          <div class="section-header">
+            <h2>Así funciona Pita Logística</h2>
+            <p>Un flujo claro y transparente para tu importación.</p>
+          </div>
+          <div class="flow-container">
+            <div class="flow-line" aria-hidden="true"></div>
+            <div class="flow-step">
+              <div class="flow-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+              </div>
+              <div class="flow-content">
+                <span class="flow-num">01</span>
+                <h3>Recibimos tu compra en China</h3>
+                <p>Te asignamos una dirección de almacén. Tu proveedor envía allí y confirmamos recepción con fotos y conteo.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <polyline points="10 9 9 9 8 9"/>
+                </svg>
+              </div>
+              <div class="flow-content">
+                <span class="flow-num">02</span>
+                <h3>Consolidamos y verificamos</h3>
+                <p>Verificamos medidas, peso y tipo. Agrupamos tus cajas para optimizar espacio y costo.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="1" y="3" width="15" height="13"/>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                  <circle cx="5.5" cy="18.5" r="2.5"/>
+                  <circle cx="18.5" cy="18.5" r="2.5"/>
+                </svg>
+              </div>
+              <div class="flow-content">
+                <span class="flow-num">03</span>
+                <h3>Envío marítimo o aéreo</h3>
+                <p>Elegimos la ruta ideal. Manejo aduanal y seguimiento hasta Venezuela.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div class="flow-content">
+                <span class="flow-num">04</span>
+                <h3>Entrega en Venezuela</h3>
+                <p>Retiras en nuestras oficinas o coordinamos envío interno. Soporte en todo el proceso.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BENEFICIOS -->
+      <section id="beneficios" class="section section-alt">
+        <div class="container">
+          <div class="section-header">
+            <h2>Más que un casillero, un aliado logístico</h2>
+            <p>
+              Diseñado para emprendedores, empresas y revendedores que compran
+              en China y venden en Venezuela.
+            </p>
+          </div>
+          <div class="features-grid">
+            <article class="feature-card">
+              <h3>Transparencia en costos</h3>
+              <p>
+                Te explicamos claramente qué estás pagando: flete, manejo,
+                nacionalización y cualquier costo extra antes de embarcar.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Acompañamiento en compras</h3>
+              <p>
+                Si lo necesitas, te ayudamos a validar proveedores, productos y
+                documentos básicos para minimizar riesgos.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Rutas pensadas para Venezuela</h3>
+              <p>
+                Operamos rutas optimizadas para llegar a los principales estados
+                del país con tiempos competitivos.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Soporte humano real</h3>
+              <p>
+                Estamos disponibles por WhatsApp e Instagram para responder
+                dudas sobre tu carga en cada etapa del proceso.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIBILIDAD -->
+      <section class="section media-section">
+        <div class="container media-inner">
+          <div class="media-text">
+            <h2>Visibilidad y control de tu carga</h2>
+            <p>
+              Al estilo de plataformas líderes como Flexport, te mantenemos
+              informado del estado de tus embarques en cada etapa: desde que tu
+              proveedor entrega la mercancía en China hasta que llega a
+              Venezuela.
+            </p>
+            <ul class="media-list">
+              <li>Actualizaciones por etapa clave de tu envío.</li>
+              <li>Información clara sobre tiempos estimados y rutas.</li>
+              <li>Acompañamiento humano para decisiones importantes.</li>
+            </ul>
+          </div>
+          <div class="media-image">
+            <img
+              src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Equipo de logística monitoreando envíos en pantallas"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- RUTAS -->
+      <section id="rutas" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Rutas principales</h2>
+            <p>Operamos rutas constantes entre China y Venezuela.</p>
+          </div>
+          <div class="routes-grid">
+            <div class="route-card">
+              <h3>China &rarr; Puerto Cabello</h3>
+              <p>Ruta marítima consolidada para carga comercial.</p>
+              <ul>
+                <li>Ideal para volúmenes medios y altos</li>
+                <li>ETA estimada: 18 - 30 días</li>
+                <li>Tarifas por kilo y por volumen</li>
+              </ul>
+            </div>
+            <div class="route-card">
+              <h3>China &rarr; Maiquetía</h3>
+              <p>Ruta aérea para mercancía urgente y liviana.</p>
+              <ul>
+                <li>Productos de alto valor o urgencia</li>
+                <li>ETA estimada: 7 - 12 días</li>
+                <li>Ideal para muestras y electrónicos pequeños</li>
+              </ul>
+            </div>
+            <div class="route-card">
+              <h3>Distribución nacional</h3>
+              <p>Desde nuestros puntos principales hacia tu ciudad.</p>
+              <ul>
+                <li>Coordinación de transporte interno</li>
+                <li>Entrega en agencias aliadas</li>
+                <li>Soporte con seguimiento</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALCULADORA -->
+      <section id="calculadora" class="section">
+        <div class="container calculator-inner">
+          <div class="calculator-copy">
+            <div class="section-header section-header-left">
+              <h2>Calcula tu volumen y costo estimado</h2>
+              <p>
+                Ingresa las medidas de tu caja o carga en centímetros y el peso
+                total en kilogramos.
+              </p>
+            </div>
+            <p class="calculator-intro">La tarifa por metro cúbico mejora a medida que aumenta tu volumen consolidado:</p>
+            <div class="tariff-table-wrapper">
+              <table class="tariff-table">
+                <thead>
+                  <tr>
+                    <th>Volumen (m³)</th>
+                    <th>Tarifa por m³</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>0,10 – 4,99</td>
+                    <td><strong>$ 650</strong> USD</td>
+                  </tr>
+                  <tr>
+                    <td>5,00 – 9,99</td>
+                    <td><strong>$ 600</strong> USD</td>
+                  </tr>
+                  <tr>
+                    <td>10,00 o más</td>
+                    <td><strong>$ 580</strong> USD</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul class="calculator-notes">
+              <li>Volumen mínimo facturable: 0,10 m³.</li>
+              <li>Si tu carga supera 400 kg/m³, se considera carga especial. Solicita cotización por WhatsApp.</li>
+            </ul>
+          </div>
+          <div class="calculator-card">
+            <div class="form-row calc-grid">
+              <div class="form-field">
+                <label for="largo">Largo (cm)</label>
+                <input
+                  id="largo"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Ej: 80"
+                />
+              </div>
+              <div class="form-field">
+                <label for="ancho">Ancho (cm)</label>
+                <input
+                  id="ancho"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Ej: 60"
+                />
+              </div>
+              <div class="form-field">
+                <label for="alto">Alto (cm)</label>
+                <input
+                  id="alto"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Ej: 50"
+                />
+              </div>
+              <div class="form-field">
+                <label for="pesoKg">Peso total (kg)</label>
+                <input
+                  id="pesoKg"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Ej: 80"
+                />
+              </div>
+            </div>
+            <div class="calc-result" id="calc-result">
+              <p class="result-placeholder">
+                Completa las medidas y el peso para ver un estimado.
+              </p>
+            </div>
+            <div class="calc-actions">
+              <button id="btnCalcular" type="button" class="btn btn-primary btn-full">
+                Calcular costo
+              </button>
+              <p class="calc-hint">
+                Usamos tus medidas para estimar el volumen en m³ y aplicar la tarifa por metro cúbico.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCIAS DE CLIENTES -->
+      <section id="testimonios" class="section section-alt">
+        <div class="container">
+          <div class="section-header">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <p>Empresas y emprendedores que confían en Pita Logística para sus importaciones.</p>
+          </div>
+          <div class="testimonials-grid">
+            <article class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"Excelente servicio. Mi primera importación desde China fue sin complicaciones. El equipo me guió en todo el proceso."</p>
+              <div class="testimonial-author">
+                <span class="testimonial-name">María G.</span>
+                <span class="testimonial-role">Emprendedora, Valencia</span>
+              </div>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"Llevamos dos años trabajando con Pita. Transparencia en costos y tiempos. Muy recomendados."</p>
+              <div class="testimonial-author">
+                <span class="testimonial-name">Carlos R.</span>
+                <span class="testimonial-role">Distribuidor, Caracas</span>
+              </div>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"La calculadora de costo me ayudó a planificar. La cotización final coincidió con lo estimado. Profesionales."</p>
+              <div class="testimonial-author">
+                <span class="testimonial-name">Andrea M.</span>
+                <span class="testimonial-role">Comerciante, Maracay</span>
+              </div>
+            </article>
+          </div>
+          <div class="instagram-cta">
+            <a href="https://www.instagram.com/pitalogistica.internacional/" target="_blank" rel="noopener noreferrer" class="instagram-link">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>Seguinos en Instagram</span>
+              <strong>@pitalogistica.internacional</strong>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Preguntas frecuentes</h2>
+            <p>Resolvemos las dudas más comunes antes de tu primer envío.</p>
+          </div>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3>¿Qué puedo traer desde China?</h3>
+              <p>
+                Trabajamos con mercancía comercial general. Algunos productos
+                especiales (alimentos, químicos, marcas registradas) requieren
+                permisos adicionales que revisamos caso por caso.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3>¿Cuánto tiempo tarda mi carga en llegar?</h3>
+              <p>
+                Depende de la ruta y temporada. De forma general, los envíos
+                marítimos toman entre 18 y 30 días y los aéreos entre 7 y 12
+                días una vez consolidada la carga.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3>¿Cómo se calcula el costo del envío?</h3>
+              <p>
+                Consideramos peso real, peso volumétrico, tipo de mercancía y
+                ruta seleccionada. Siempre te compartimos un estimado antes de
+                embarcar y te explicamos cada concepto.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3>¿Puedo pagar en dólares o en bolívares?</h3>
+              <p>
+                Sí. Aceptamos diferentes métodos de pago adaptados al mercado
+                venezolano. Cuando te coticemos te indicamos las opciones
+                disponibles al momento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/584241234567" id="whatsappFloat" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      <span class="whatsapp-float-text">¿Consultas?</span>
+    </a>
+
+    <!-- Botón volver arriba -->
+    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
+
+    <footer id="contacto" class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="logo logo-footer">
+            <img src="./assets/logo.png" alt="Pita Logística Internacional" class="logo-img" />
+          </a>
+          <p>
+            Importaciones desde China a Venezuela con enfoque en transparencia,
+            acompañamiento y tiempos competitivos.
+          </p>
+          <p class="footer-copy">
+            © <span id="year"></span> Pita Logística Internacional. Todos los
+            derechos reservados.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Contacto</h4>
+          <ul>
+            <li>
+              Instagram:
+              <a
+                href="https://www.instagram.com/pitalogistica.internacional/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >@pitalogistica.internacional</a
+              >
+            </li>
+            <li>WhatsApp: reemplazar por tu número oficial</li>
+            <li>Correo: reemplazar por tu correo corporativo</li>
+            <li>Ubicación: Venezuela</li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Enlaces</h4>
+          <ul>
+            <li><a href="#cotizar">Cotizar</a></li>
+            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#calculadora">Calculadora</a></li>
+            <li><a href="#testimonios">Experiencias</a></li>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+      </div>
+      <script>
+        document.getElementById("year").textContent =
+          new Date().getFullYear();
+
+        /* Configuración: reemplaza con tus datos reales */
+        var CONFIG = {
+          correoEmpresa: "contacto@pitalogistica.com",
+          whatsappNumero: "584241234567",
+          intranetUrl: "https://intranet.pitalogistica.com"
+        };
+        var waf = document.getElementById("whatsappFloat");
+        if (waf) waf.href = "https://wa.me/" + CONFIG.whatsappNumero;
+        var linkIntranet = document.getElementById("linkIntranet");
+        var linkIntranetHero = document.getElementById("linkIntranetHero");
+        if (linkIntranet && CONFIG.intranetUrl) linkIntranet.href = CONFIG.intranetUrl;
+        if (linkIntranetHero && CONFIG.intranetUrl) linkIntranetHero.href = CONFIG.intranetUrl;
+
+        /* Menú móvil */
+        var menuToggle = document.getElementById("menuToggle");
+        var headerNav = document.getElementById("headerNavWrapper");
+        if (menuToggle && headerNav) {
+          menuToggle.addEventListener("click", function () {
+            var isOpen = headerNav.classList.toggle("open");
+            menuToggle.setAttribute("aria-expanded", isOpen);
+          });
+          headerNav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              headerNav.classList.remove("open");
+              menuToggle.setAttribute("aria-expanded", "false");
+            });
+          });
+        }
+
+        /* Botón volver arriba */
+        var backToTop = document.getElementById("backToTop");
+        if (backToTop) {
+          window.addEventListener("scroll", function () {
+            backToTop.classList.toggle("visible", window.scrollY > 400);
+          });
+          backToTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+
+        /* Formulario de cotización por correo */
+        (function () {
+          var form = document.getElementById("quoteForm");
+          var feedback = document.getElementById("formFeedback");
+          if (!form || !feedback) return;
+
+          function validarEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || "");
+          }
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var nombre = (document.getElementById("nombre") || {}).value.trim();
+            var correo = (document.getElementById("correo") || {}).value.trim();
+            var whatsapp = (document.getElementById("whatsapp") || {}).value.trim();
+            var origen = (document.getElementById("origen") || {}).value.trim();
+            var destino = (document.getElementById("destino") || {}).value.trim();
+            var tipo = (document.getElementById("tipo") || {}).value.trim();
+            var peso = (document.getElementById("peso") || {}).value.trim();
+            var detalles = (document.getElementById("detalles") || {}).value.trim();
+
+            feedback.textContent = "";
+            feedback.className = "form-note";
+
+            if (!nombre) {
+              feedback.textContent = "Por favor ingresa tu nombre.";
+              feedback.style.color = "#dc2626";
+              return;
+            }
+            if (!correo) {
+              feedback.textContent = "Por favor ingresa tu correo electrónico.";
+              feedback.style.color = "#dc2626";
+              return;
+            }
+            if (!validarEmail(correo)) {
+              feedback.textContent = "Por favor ingresa un correo electrónico válido.";
+              feedback.style.color = "#dc2626";
+              return;
+            }
+
+            var cuerpo = "Nueva solicitud de cotización - Pita Logística\n\n";
+            cuerpo += "Nombre: " + nombre + "\n";
+            cuerpo += "Correo: " + correo + "\n";
+            if (whatsapp) cuerpo += "WhatsApp: " + whatsapp + "\n";
+            if (origen) cuerpo += "Origen (China): " + origen + "\n";
+            if (destino) cuerpo += "Destino (Venezuela): " + destino + "\n";
+            if (tipo) cuerpo += "Tipo de mercancía: " + tipo + "\n";
+            if (peso) cuerpo += "Peso/Volumen: " + peso + "\n";
+            if (detalles) cuerpo += "Detalles: " + detalles + "\n";
+
+            var asunto = "Cotización - " + nombre;
+            var mailto = "mailto:" + CONFIG.correoEmpresa +
+              "?subject=" + encodeURIComponent(asunto) +
+              "&body=" + encodeURIComponent(cuerpo);
+
+            window.location.href = mailto;
+            feedback.textContent = "Se abrirá tu cliente de correo. Envíanos el mensaje para recibir tu cotización.";
+            feedback.style.color = "#16a34a";
+          });
+        })();
+
+        /* Calculadora de costo por m³ */
+        (function () {
+          var largoInput = document.getElementById("largo");
+          var anchoInput = document.getElementById("ancho");
+          var altoInput = document.getElementById("alto");
+          var pesoInput = document.getElementById("pesoKg");
+          var resultBox = document.getElementById("calc-result");
+          var calcButton = document.getElementById("btnCalcular");
+          var calcActions = document.querySelector(".calc-actions");
+
+          if (!largoInput || !anchoInput || !altoInput || !pesoInput || !calcButton) {
+            return;
+          }
+
+          function formatNumber(value, decimals) {
+            if (isNaN(value)) return "";
+            var fixed = value.toFixed(decimals);
+            return fixed.replace(".", ",");
+          }
+
+          function updateCalculator() {
+            var largo = parseFloat(largoInput.value.replace(",", "."));
+            var ancho = parseFloat(anchoInput.value.replace(",", "."));
+            var alto = parseFloat(altoInput.value.replace(",", "."));
+            var peso = parseFloat(pesoInput.value.replace(",", "."));
+
+            if (
+              isNaN(largo) ||
+              isNaN(ancho) ||
+              isNaN(alto) ||
+              isNaN(peso)
+            ) {
+              resultBox.innerHTML =
+                '<p class="result-placeholder">Completa las medidas y el peso para ver un estimado.</p>';
+              return;
+            }
+
+            var volumeM3 = (largo * ancho * alto) / 1000000;
+
+            if (!isFinite(volumeM3) || volumeM3 <= 0) {
+              resultBox.innerHTML =
+                '<p class="result-placeholder">Revisa que las medidas sean mayores a cero.</p>';
+              return;
+            }
+
+            var volumenFacturable = volumeM3 < 0.1 ? 0.1 : volumeM3;
+            var densidad = peso / volumeM3; // kg por m³
+            var volumenMostrado = Math.round(volumeM3 * 1000) / 1000;
+            var densidadMostrada = Math.round(densidad);
+
+            if (densidad > 400) {
+              resultBox.innerHTML =
+                '<div class="result-main">' +
+                '  <div>' +
+                '    <div class="result-label">Volumen estimado</div>' +
+                '    <div class="result-value">' +
+                formatNumber(volumenMostrado, 3) +
+                " m³</div>" +
+                "  </div>" +
+                '  <div>' +
+                '    <div class="result-label">Densidad aproximada</div>' +
+                '    <div class="result-value">' +
+                formatNumber(densidadMostrada, 0) +
+                " kg/m³</div>" +
+                "  </div>" +
+                "</div>" +
+                '<div class="result-secondary">' +
+                '  <span class="badge badge-warning">Carga especial &gt; 400 kg/m³</span>' +
+                "</div>" +
+                '<p class="result-note">Por seguridad, esta carga se considera especial. Por favor solicita una cotización personalizada a nuestro WhatsApp para revisar tu caso.</p>';
+              addWhatsAppButton(volumenMostrado, null, null, densidadMostrada, true);
+              return;
+            }
+
+            var tarifa;
+            var rangoTexto;
+
+            if (volumenFacturable >= 0.1 && volumenFacturable < 5) {
+              tarifa = 650;
+              rangoTexto = "0,10 m³ a 4,99 m³";
+            } else if (volumenFacturable >= 5 && volumenFacturable < 10) {
+              tarifa = 600;
+              rangoTexto = "5,00 m³ a 9,99 m³";
+            } else {
+              tarifa = 580;
+              rangoTexto = "10,00 m³ o más";
+            }
+
+            var total = volumenFacturable * tarifa;
+
+            var volLabel = volumeM3 < 0.1
+              ? "Volumen (mín. facturable 0,10 m³)"
+              : "Volumen estimado";
+            resultBox.innerHTML =
+              '<div class="result-main">' +
+              '  <div>' +
+              '    <div class="result-label">' + volLabel + '</div>' +
+              '    <div class="result-value">' +
+              formatNumber(volumenMostrado, 3) +
+              " m³" + (volumeM3 < 0.1 ? " &rarr; 0,100 m³" : "") + "</div>" +
+              "  </div>" +
+              '  <div>' +
+              '    <div class="result-label">Tarifa por m³</div>' +
+              '    <div class="result-value">$ ' +
+              formatNumber(tarifa, 0) +
+              "</div>" +
+              "  </div>" +
+              '  <div>' +
+              '    <div class="result-label">Costo estimado</div>' +
+              '    <div class="result-value result-value-accent">$ ' +
+              formatNumber(total, 2) +
+              "</div>" +
+              "  </div>" +
+              "</div>" +
+              '<div class="result-secondary">' +
+              '  <span class="badge">Rango de tarifa: ' +
+              rangoTexto +
+              "</span>" +
+              '  <span class="badge">Densidad: ' +
+              formatNumber(densidadMostrada, 0) +
+              " kg/m³</span>" +
+              "</div>" +
+              '<p class="result-note">' +
+              (volumeM3 < 0.1
+                ? "Se aplicó el volumen mínimo facturable (0,10 m³). "
+                : "") +
+              "Este cálculo es solo referencial. El monto final se confirma una vez recibida y verificada la carga en nuestro almacén.</p>";
+            addWhatsAppButton(volumenMostrado, total, tarifa, densidadMostrada);
+          }
+
+        function addWhatsAppButton(vol, total, tarifa, dens, esEspecial) {
+          var existente = document.getElementById("btnCalcWhatsApp");
+          if (existente) existente.remove();
+          if (!calcActions) return;
+          var msg = "Hola, solicito cotización para envío:\n";
+          msg += "• Volumen: " + formatNumber(vol, 3) + " m³\n";
+          msg += "• Peso: " + (pesoInput.value || "-") + " kg\n";
+          if (esEspecial) {
+            msg += "• Densidad: " + dens + " kg/m³ (carga especial)\n";
+          } else {
+            msg += "• Tarifa aplicable: $" + formatNumber(tarifa, 0) + "/m³\n";
+            msg += "• Costo estimado: $" + formatNumber(total, 2) + "\n";
+          }
+          var url = "https://wa.me/" + CONFIG.whatsappNumero + "?text=" + encodeURIComponent(msg);
+          var btn = document.createElement("a");
+          btn.id = "btnCalcWhatsApp";
+          btn.href = url;
+          btn.target = "_blank";
+          btn.rel = "noopener noreferrer";
+          btn.className = "btn btn-primary btn-full";
+          btn.style.marginTop = "8px";
+          btn.textContent = "Cotizar este envío por WhatsApp";
+          calcActions.appendChild(btn);
+        }
+
+          calcButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            updateCalculator();
+          });
+
+          [largoInput, anchoInput, altoInput, pesoInput].forEach(function (el) {
+            el.addEventListener("keypress", function (e) {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                updateCalculator();
+              }
+            });
+          });
+        })();
+      </script>
+    </footer>
+  </body>
+</html>
