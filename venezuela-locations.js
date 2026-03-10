@@ -1,0 +1,27 @@
+/* Estados y ciudades de Venezuela - Pita Logística */
+var VENEZUELA_ESTADOS_CIUDADES = {
+  "Amazonas": ["Puerto Ayacucho", "San Fernando de Atabapo", "Maroa", "San Carlos de Río Negro"],
+  "Anzoátegui": ["Barcelona", "Puerto La Cruz", "Lechería", "Guanta", "El Tigre", "Cantaura", "Anaco", "Pariaguán", "Clarines", "Píritu"],
+  "Apure": ["San Fernando de Apure", "Guasdualito", "Elorza", "Achaguas", "Biruaca", "Mantecal"],
+  "Aragua": ["Maracay", "Turmero", "Villa de Cura", "La Victoria", "Cagua", "El Limón", "Palo Negro", "San Mateo", "Colonia Tovar", "Ocumare de la Costa"],
+  "Barinas": ["Barinas", "Socopó", "Santa Bárbara", "Barinitas", "Sabaneta", "Altamira", "Ciudad Bolivia", "Obispos"],
+  "Bolívar": ["Ciudad Bolívar", "Ciudad Guayana", "Upata", "El Callao", "Tumeremo", "Santa Elena de Uairén", "Puerto Ordaz", "San Félix", "Caicara del Orinoco", "Guasipati"],
+  "Carabobo": ["Valencia", "Guacara", "Puerto Cabello", "Mariara", "San Joaquín", "Bejuma", "Morón", "Naguanagua", "San Diego", "Tocuyito", "Los Guayos", "Güigüe"],
+  "Cojedes": ["San Carlos", "Tinaco", "El Pao", "Tinaquillo", "Las Vegas"],
+  "Delta Amacuro": ["Tucupita", "Barrancas", "Pedernales", "Curiapo"],
+  "Falcón": ["Coro", "Punto Fijo", "Churuguara", "Dabajuro", "Mene de Mauroa", "San Juan de los Cayos", "La Vela", "Pueblo Nuevo", "Santa Ana de Coro", "Puerto Cumarebo"],
+  "Guárico": ["San Juan de los Morros", "Calabozo", "Valle de la Pascua", "Altagracia de Orituco", "Zaraza", "Ortiz", "Camaguán", "Chaguaramas", "Tucupido", "El Socorro"],
+  "Lara": ["Barquisimeto", "Carora", "Quíbor", "El Tocuyo", "Cabudare", "Duaca", "Sanare", "Siquire", "Sarare", "Humocaro Bajo"],
+  "Mérida": ["Mérida", "El Vigía", "Tovar", "Ejido", "Bailadores", "Lagunillas", "Tucaní", "Santa Cruz de Mora", "Tabay", "Timotes"],
+  "Miranda": ["Los Teques", "Guatire", "Guarenas", "Petare", "Baruta", "Chacao", "El Hatillo", "Santa Teresa del Tuy", "Ocumare del Tuy", "Río Chico", "Charallave", "Cúa", "San Antonio de los Altos", "Higuera", "Caucagua"],
+  "Monagas": ["Maturín", "Punta de Mata", "Caripito", "Temblador", "Barrancas", "Aragua de Maturín", "Caripe", "Cedeño", "La Pica"],
+  "Nueva Esparta": ["La Asunción", "Porlamar", "Pampatar", "Juan Griego", "Santa Ana", "San Juan Bautista", "El Valle", "Pedro González", "Villa Rosa"],
+  "Portuguesa": ["Guanare", "Acarigua", "Araure", "Ospino", "Guanarito", "Villa Bruzual", "Píritu", "Biscucuy", "Agua Blanca"],
+  "Sucre": ["Cumaná", "Carúpano", "Güiria", "Cariaco", "Río Caribe", "San Antonio del Golfo", "Irapa", "Tunapuy", "Casanay", "Araya"],
+  "Táchira": ["San Cristóbal", "Táriba", "Rubio", "La Grita", "San Antonio del Táchira", "Ureña", "Colón", "Palmira", "Michelena", "Capacho", "Lobatera", "Santa Ana del Táchira"],
+  "Trujillo": ["Trujillo", "Valera", "Boconó", "Escuque", "Betijoque", "Carache", "Monay", "Pampán", "Pampanito", "La Quebrada"],
+  "La Guaira": ["La Guaira", "Catia La Mar", "Maiquetía", "Caraballeda", "Macuto", "Naiguatá", "Carayaca", "Los Caracas"],
+  "Yaracuy": ["San Felipe", "Yaritagua", "Chivacoa", "Nirgua", "Cocorote", "Aroa", "Guama", "Urachiche", "Albarico"],
+  "Zulia": ["Maracaibo", "Cabimas", "Ciudad Ojeda", "San Francisco", "Santa Bárbara del Zulia", "Machiques", "La Concepción", "Villa del Rosario", "Los Puertos de Altagracia", "Lagunillas", "Mene Grande", "Bachaquero", "Concepción", "Encontrados", "San Carlos del Zulia"],
+  "Distrito Capital": ["Caracas", "Petare", "El Valle", "La Pastora", "Catia", "San Martín", "El Recreo", "La Vega", "Antímano", "Macarao", "Coche", "San Agustín", "San Juan", "Santa Rosalía", "23 de Enero"]
+};

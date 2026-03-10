@@ -15,6 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./venezuela-locations.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -125,18 +127,47 @@
                 </div>
                 <div class="form-row">
                   <div class="form-field">
-                    <label for="destino">Destino (Venezuela)</label>
-                    <input id="destino" type="text" placeholder="Valencia, Caracas, Maracay..." />
-                  </div>
-                  <div class="form-field">
                     <label for="tipo">Tipo de mercancía</label>
                     <input id="tipo" type="text" placeholder="Ropa, electrónica, etc." />
                   </div>
                 </div>
+                <div class="form-field">
+                  <label>Tipo de entrega</label>
+                  <div class="radio-group">
+                    <label class="radio-option">
+                      <input type="radio" name="tipoEntrega" value="retira_almacen" checked />
+                      <span>Retira en Almacén Valencia</span>
+                    </label>
+                    <label class="radio-option">
+                      <input type="radio" name="tipoEntrega" value="entrega_domicilio" />
+                      <span>Entrega a domicilio</span>
+                    </label>
+                  </div>
+                </div>
+                <div id="entregaDomicilioFields" class="entrega-domicilio-fields" style="display: none;">
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="estado">Estado</label>
+                      <select id="estado" class="form-select">
+                        <option value="">Selecciona un estado</option>
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <label for="ciudad">Ciudad</label>
+                      <select id="ciudad" class="form-select" disabled>
+                        <option value="">Primero selecciona un estado</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
                 <div class="form-row">
                   <div class="form-field">
-                    <label for="peso">Peso / Volumen</label>
-                    <input id="peso" type="text" placeholder="Ej: 80 kg o 0.5 m³" />
+                    <label for="peso">Peso</label>
+                    <input id="peso" type="text" placeholder="Ej: 80 kg" />
+                  </div>
+                  <div class="form-field">
+                    <label for="volumen">Volumen</label>
+                    <input id="volumen" type="text" placeholder="Ej: 0,5 m³" />
                   </div>
                 </div>
                 <div class="form-field">
@@ -348,7 +379,7 @@
                 <thead>
                   <tr>
                     <th>Volumen (m³)</th>
-                    <th>Tarifa por m³</th>
+                    <th>Tarifa por m³ desde</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -413,6 +444,35 @@
                   step="0.01"
                   placeholder="Ej: 80"
                 />
+              </div>
+            </div>
+            <div class="form-field calc-entrega-field">
+              <label>Tipo de entrega</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="calcTipoEntrega" value="retira_almacen" checked />
+                  <span>Retira en Almacén Valencia</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="calcTipoEntrega" value="entrega_domicilio" />
+                  <span>Entrega a domicilio</span>
+                </label>
+              </div>
+            </div>
+            <div id="calcEntregaDomicilioFields" class="entrega-domicilio-fields calc-entrega-domicilio" style="display: none;">
+              <div class="form-row calc-grid">
+                <div class="form-field">
+                  <label for="calcEstado">Estado</label>
+                  <select id="calcEstado" class="form-select">
+                    <option value="">Selecciona un estado</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="calcCiudad">Ciudad</label>
+                  <select id="calcCiudad" class="form-select" disabled>
+                    <option value="">Primero selecciona un estado</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="calc-result" id="calc-result">
@@ -533,6 +593,16 @@
     <!-- Botón volver arriba -->
     <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
 
+    <!-- Modal éxito formulario -->
+    <div id="modalExito" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalExitoTitulo" hidden>
+      <div class="modal-content">
+        <div class="modal-icon">✓</div>
+        <h3 id="modalExitoTitulo" class="modal-title">Información recibida</h3>
+        <p class="modal-text">Su información fue recolectada y será respondida en menos de 48 horas hábiles.</p>
+        <button type="button" class="btn btn-primary" id="modalCerrar">Entendido</button>
+      </div>
+    </div>
+
     <footer id="contacto" class="site-footer">
       <div class="container footer-inner">
         <div class="footer-brand">
@@ -584,7 +654,9 @@
         var CONFIG = {
           correoEmpresa: "contacto@pitalogistica.com",
           whatsappNumero: "584241234567",
-          intranetUrl: "https://intranet.pitalogistica.com"
+          intranetUrl: "https://intranet.pitalogistica.com",
+          supabaseUrl: "https://bpfjzvmtbwdlwtoqmutx.supabase.co",
+          supabaseAnonKey: "sb_publishable_yHC0DOg3l5tYRgTrYGL3Eg_yvKjksQS"
         };
         var waf = document.getElementById("whatsappFloat");
         if (waf) waf.href = "https://wa.me/" + CONFIG.whatsappNumero;
@@ -620,29 +692,108 @@
           });
         }
 
-        /* Formulario de cotización por correo */
+        /* Formulario de cotización → Supabase (sin correo), popup de éxito */
         (function () {
           var form = document.getElementById("quoteForm");
           var feedback = document.getElementById("formFeedback");
+          var btnSubmit = document.getElementById("btnEnviarCotizacion");
+          var modal = document.getElementById("modalExito");
+          var btnCerrar = document.getElementById("modalCerrar");
+          var entregaDomicilioFields = document.getElementById("entregaDomicilioFields");
+          var selectEstado = document.getElementById("estado");
+          var selectCiudad = document.getElementById("ciudad");
           if (!form || !feedback) return;
+
+          /* Estados y ciudades de Venezuela */
+          var estadosCiudades = window.VENEZUELA_ESTADOS_CIUDADES || {};
+          Object.keys(estadosCiudades).sort().forEach(function (est) {
+            var opt = document.createElement("option");
+            opt.value = est;
+            opt.textContent = est;
+            selectEstado && selectEstado.appendChild(opt);
+          });
+
+          function actualizarCiudades() {
+            if (!selectCiudad) return;
+            selectCiudad.innerHTML = "";
+            var estado = selectEstado && selectEstado.value;
+            if (!estado) {
+              var opt0 = document.createElement("option");
+              opt0.value = "";
+              opt0.textContent = "Primero selecciona un estado";
+              selectCiudad.appendChild(opt0);
+              selectCiudad.disabled = true;
+              return;
+            }
+            var ciudades = estadosCiudades[estado] || [];
+            var opt0 = document.createElement("option");
+            opt0.value = "";
+            opt0.textContent = "Selecciona una ciudad";
+            selectCiudad.appendChild(opt0);
+            ciudades.forEach(function (ciudad) {
+              var opt = document.createElement("option");
+              opt.value = ciudad;
+              opt.textContent = ciudad;
+              selectCiudad.appendChild(opt);
+            });
+            selectCiudad.disabled = false;
+          }
+
+          selectEstado && selectEstado.addEventListener("change", actualizarCiudades);
+
+          document.querySelectorAll('input[name="tipoEntrega"]').forEach(function (radio) {
+            radio.addEventListener("change", function () {
+              var esDomicilio = this.value === "entrega_domicilio";
+              if (entregaDomicilioFields) entregaDomicilioFields.style.display = esDomicilio ? "block" : "none";
+              if (!esDomicilio && selectEstado) selectEstado.value = "";
+              actualizarCiudades();
+            });
+          });
 
           function validarEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || "");
           }
 
-          form.addEventListener("submit", function (e) {
+          function mostrarModal() {
+            if (modal) {
+              modal.removeAttribute("hidden");
+              modal.classList.add("modal-visible");
+              document.body.style.overflow = "hidden";
+            }
+          }
+
+          function cerrarModal() {
+            if (modal) {
+              modal.setAttribute("hidden", "");
+              modal.classList.remove("modal-visible");
+              document.body.style.overflow = "";
+            }
+          }
+
+          if (btnCerrar) btnCerrar.addEventListener("click", cerrarModal);
+          if (modal) {
+            modal.addEventListener("click", function (e) {
+              if (e.target === modal) cerrarModal();
+            });
+          }
+
+          form.addEventListener("submit", async function (e) {
             e.preventDefault();
             var nombre = (document.getElementById("nombre") || {}).value.trim();
             var correo = (document.getElementById("correo") || {}).value.trim();
             var whatsapp = (document.getElementById("whatsapp") || {}).value.trim();
             var origen = (document.getElementById("origen") || {}).value.trim();
-            var destino = (document.getElementById("destino") || {}).value.trim();
             var tipo = (document.getElementById("tipo") || {}).value.trim();
             var peso = (document.getElementById("peso") || {}).value.trim();
+            var volumen = (document.getElementById("volumen") || {}).value.trim();
+            var tipoEntrega = (document.querySelector('input[name="tipoEntrega"]:checked') || {}).value || "retira_almacen";
+            var estado = (document.getElementById("estado") || {}).value || null;
+            var ciudad = (document.getElementById("ciudad") || {}).value || null;
             var detalles = (document.getElementById("detalles") || {}).value.trim();
 
             feedback.textContent = "";
             feedback.className = "form-note";
+            feedback.style.color = "";
 
             if (!nombre) {
               feedback.textContent = "Por favor ingresa tu nombre.";
@@ -659,25 +810,59 @@
               feedback.style.color = "#dc2626";
               return;
             }
+            if (tipoEntrega === "entrega_domicilio" && (!estado || !ciudad)) {
+              feedback.textContent = "Si eliges entrega a domicilio, selecciona estado y ciudad.";
+              feedback.style.color = "#dc2626";
+              return;
+            }
 
-            var cuerpo = "Nueva solicitud de cotización - Pita Logística\n\n";
-            cuerpo += "Nombre: " + nombre + "\n";
-            cuerpo += "Correo: " + correo + "\n";
-            if (whatsapp) cuerpo += "WhatsApp: " + whatsapp + "\n";
-            if (origen) cuerpo += "Origen (China): " + origen + "\n";
-            if (destino) cuerpo += "Destino (Venezuela): " + destino + "\n";
-            if (tipo) cuerpo += "Tipo de mercancía: " + tipo + "\n";
-            if (peso) cuerpo += "Peso/Volumen: " + peso + "\n";
-            if (detalles) cuerpo += "Detalles: " + detalles + "\n";
+            if (!CONFIG.supabaseUrl || !CONFIG.supabaseAnonKey) {
+              feedback.textContent = "Configura Supabase en CONFIG.";
+              feedback.style.color = "#dc2626";
+              return;
+            }
 
-            var asunto = "Cotización - " + nombre;
-            var mailto = "mailto:" + CONFIG.correoEmpresa +
-              "?subject=" + encodeURIComponent(asunto) +
-              "&body=" + encodeURIComponent(cuerpo);
+            if (btnSubmit) {
+              btnSubmit.disabled = true;
+              btnSubmit.textContent = "Enviando…";
+            }
 
-            window.location.href = mailto;
-            feedback.textContent = "Se abrirá tu cliente de correo. Envíanos el mensaje para recibir tu cotización.";
-            feedback.style.color = "#16a34a";
+            try {
+              var supabase = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+              var { error } = await supabase
+                .from("cotizaciones")
+                .insert({
+                  nombre: nombre,
+                  correo: correo,
+                  whatsapp: whatsapp || null,
+                  origen: origen || null,
+                  tipo_mercancia: tipo || null,
+                  peso: peso || null,
+                  volumen: volumen || null,
+                  tipo_entrega: tipoEntrega,
+                  estado: tipoEntrega === "entrega_domicilio" ? estado : null,
+                  ciudad: tipoEntrega === "entrega_domicilio" ? ciudad : null,
+                  detalles: detalles || null
+                });
+
+              if (error) throw error;
+
+              form.reset();
+              if (entregaDomicilioFields) entregaDomicilioFields.style.display = "none";
+              if (selectEstado) selectEstado.value = "";
+              actualizarCiudades();
+              mostrarModal();
+            } catch (err) {
+              var msg = err && err.message ? err.message : String(err);
+              feedback.textContent = "Error: " + msg + " (Revisa que ejecutaste supabase-setup.sql)";
+              feedback.style.color = "#dc2626";
+              console.error("Supabase:", err);
+            } finally {
+              if (btnSubmit) {
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = "Enviar solicitud";
+              }
+            }
           });
         })();
 
@@ -690,10 +875,59 @@
           var resultBox = document.getElementById("calc-result");
           var calcButton = document.getElementById("btnCalcular");
           var calcActions = document.querySelector(".calc-actions");
+          var calcEntregaDomicilioFields = document.getElementById("calcEntregaDomicilioFields");
+          var calcSelectEstado = document.getElementById("calcEstado");
+          var calcSelectCiudad = document.getElementById("calcCiudad");
+          var calcEstadosCiudades = window.VENEZUELA_ESTADOS_CIUDADES || {};
 
           if (!largoInput || !anchoInput || !altoInput || !pesoInput || !calcButton) {
             return;
           }
+
+          /* Poblar estados en la calculadora */
+          Object.keys(calcEstadosCiudades).sort().forEach(function (est) {
+            var opt = document.createElement("option");
+            opt.value = est;
+            opt.textContent = est;
+            calcSelectEstado && calcSelectEstado.appendChild(opt);
+          });
+
+          function actualizarCalcCiudades() {
+            if (!calcSelectCiudad) return;
+            calcSelectCiudad.innerHTML = "";
+            var estado = calcSelectEstado && calcSelectEstado.value;
+            if (!estado) {
+              var opt0 = document.createElement("option");
+              opt0.value = "";
+              opt0.textContent = "Primero selecciona un estado";
+              calcSelectCiudad.appendChild(opt0);
+              calcSelectCiudad.disabled = true;
+              return;
+            }
+            var ciudades = calcEstadosCiudades[estado] || [];
+            var opt0 = document.createElement("option");
+            opt0.value = "";
+            opt0.textContent = "Selecciona una ciudad";
+            calcSelectCiudad.appendChild(opt0);
+            ciudades.forEach(function (ciudad) {
+              var opt = document.createElement("option");
+              opt.value = ciudad;
+              opt.textContent = ciudad;
+              calcSelectCiudad.appendChild(opt);
+            });
+            calcSelectCiudad.disabled = false;
+          }
+
+          calcSelectEstado && calcSelectEstado.addEventListener("change", actualizarCalcCiudades);
+
+          document.querySelectorAll('input[name="calcTipoEntrega"]').forEach(function (radio) {
+            radio.addEventListener("change", function () {
+              var esDomicilio = this.value === "entrega_domicilio";
+              if (calcEntregaDomicilioFields) calcEntregaDomicilioFields.style.display = esDomicilio ? "block" : "none";
+              if (!esDomicilio && calcSelectEstado) calcSelectEstado.value = "";
+              actualizarCalcCiudades();
+            });
+          });
 
           function formatNumber(value, decimals) {
             if (isNaN(value)) return "";
@@ -751,7 +985,7 @@
                 '  <span class="badge badge-warning">Carga especial &gt; 400 kg/m³</span>' +
                 "</div>" +
                 '<p class="result-note">Por seguridad, esta carga se considera especial. Por favor solicita una cotización personalizada a nuestro WhatsApp para revisar tu caso.</p>';
-              addWhatsAppButton(volumenMostrado, null, null, densidadMostrada, true);
+              addWhatsAppButton(volumenMostrado, null, null, densidadMostrada, true, null, null, null);
               return;
             }
 
@@ -808,10 +1042,13 @@
                 ? "Se aplicó el volumen mínimo facturable (0,10 m³). "
                 : "") +
               "Este cálculo es solo referencial. El monto final se confirma una vez recibida y verificada la carga en nuestro almacén.</p>";
-            addWhatsAppButton(volumenMostrado, total, tarifa, densidadMostrada);
+            var calcTipoEntrega = (document.querySelector('input[name="calcTipoEntrega"]:checked') || {}).value || "retira_almacen";
+            var calcEstado = (calcSelectEstado && calcSelectEstado.value) || null;
+            var calcCiudad = (calcSelectCiudad && calcSelectCiudad.value) || null;
+            addWhatsAppButton(volumenMostrado, total, tarifa, densidadMostrada, false, calcTipoEntrega, calcEstado, calcCiudad);
           }
 
-        function addWhatsAppButton(vol, total, tarifa, dens, esEspecial) {
+        function addWhatsAppButton(vol, total, tarifa, dens, esEspecial, tipoEntrega, estado, ciudad) {
           var existente = document.getElementById("btnCalcWhatsApp");
           if (existente) existente.remove();
           if (!calcActions) return;
@@ -823,6 +1060,11 @@
           } else {
             msg += "• Tarifa aplicable: $" + formatNumber(tarifa, 0) + "/m³\n";
             msg += "• Costo estimado: $" + formatNumber(total, 2) + "\n";
+          }
+          var tipo = tipoEntrega || "retira_almacen";
+          msg += "• Entrega: " + (tipo === "entrega_domicilio" ? "A domicilio" : "Retira en Almacén Valencia") + "\n";
+          if (tipo === "entrega_domicilio" && estado && ciudad) {
+            msg += "• Ubicación: " + ciudad + ", " + estado + "\n";
           }
           var url = "https://wa.me/" + CONFIG.whatsappNumero + "?text=" + encodeURIComponent(msg);
           var btn = document.createElement("a");
