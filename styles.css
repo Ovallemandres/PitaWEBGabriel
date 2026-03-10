@@ -191,32 +191,13 @@ button {
   color: var(--text);
 }
 
-.nav-split {
+.nav-links {
   flex: 1;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  min-width: 0;
-}
-
-.nav-left,
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex: 1;
-}
-
-.nav-right {
-  justify-content: flex-end;
-}
-
-.nav-center {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+  gap: 24px;
   justify-content: center;
-  flex-shrink: 0;
+  min-width: 0;
 }
 
 .nav a {
@@ -412,6 +393,23 @@ button {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.hero-route-flags {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  vertical-align: middle;
+}
+
+.hero-route-flags .hero-flag {
+  display: inline-block;
+  width: 32px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
 .hero-subtitle {
@@ -731,16 +729,19 @@ button {
   overflow: hidden;
   border-radius: 24px;
   box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.2);
+  width: 100%;
 }
 
 .carousel-track {
   display: flex;
+  width: 400%;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .carousel-slide {
-  min-width: 100%;
-  flex-shrink: 0;
+  flex: 0 0 25%;
+  width: 25%;
+  min-width: 0;
 }
 
 .carousel-card {
@@ -919,7 +920,7 @@ button {
 
 .routes-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 260px));
+  grid-template-columns: repeat(3, minmax(0, 280px));
   justify-content: center;
   gap: 18px;
 }
@@ -1445,18 +1446,11 @@ button {
   }
 
   .nav,
-  .nav-split {
+  .nav-links {
     flex-direction: column;
     gap: 4px;
     max-width: none;
     margin: 0;
-  }
-
-  .nav-left,
-  .nav-center,
-  .nav-right {
-    flex-direction: column;
-    gap: 4px;
     align-items: stretch;
   }
 
@@ -1513,7 +1507,7 @@ button {
   }
 
   .routes-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .cotizar-inner {

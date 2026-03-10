@@ -30,19 +30,13 @@
           <span></span>
         </button>
         <div class="header-nav-wrapper" id="headerNavWrapper">
-          <nav class="nav nav-split">
-            <div class="nav-left">
-              <a href="#cotizar">Cotizar</a>
-              <a href="#beneficios">Beneficios</a>
-            </div>
-            <div class="nav-center">
-              <a href="#como-funciona">Cómo funciona</a>
-            </div>
-            <div class="nav-right">
-              <a href="#calculadora">Calculadora</a>
-              <a href="#testimonios">Experiencias</a>
-              <a href="#contacto">Contacto</a>
-            </div>
+          <nav class="nav nav-links">
+            <a href="#cotizar">Cotizar</a>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#calculadora">Calculadora</a>
+            <a href="#testimonios">Experiencias</a>
+            <a href="#contacto">Contacto</a>
           </nav>
           <div class="header-actions">
             <a class="btn btn-link-pita" href="https://www.pitacompra.com" target="_blank" rel="noopener noreferrer" title="Pita Compra">
@@ -66,7 +60,11 @@
             <span class="hero-badge">Logística internacional de confianza</span>
             <h1>
               Tu puente seguro
-              <span class="accent">China &rarr; Venezuela</span>
+              <span class="hero-route-flags">
+                <img src="https://flagcdn.com/w80/cn.png" alt="" class="hero-flag" width="32" height="24" />
+                <span class="accent">China &rarr; Venezuela</span>
+                <img src="https://flagcdn.com/w80/ve.png" alt="" class="hero-flag" width="32" height="24" />
+              </span>
             </h1>
             <p class="hero-subtitle">
               Centraliza tus compras en China y recibe en Venezuela con la
@@ -190,7 +188,7 @@
                 <div class="carousel-slide">
                   <div class="carousel-card">
                     <div class="carousel-image">
-                      <img src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Almacén en China" loading="lazy" />
+                      <img src="https://images.pexels.com/photos/6169668/pexels-photo-6169668.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Recepcionamos tu compra en almacén" loading="lazy" />
                       <div class="carousel-overlay"></div>
                       <span class="carousel-badge">01</span>
                     </div>
@@ -203,7 +201,7 @@
                 <div class="carousel-slide">
                   <div class="carousel-card">
                     <div class="carousel-image">
-                      <img src="https://images.pexels.com/photos/4483617/pexels-photo-4483617.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Consolidación" loading="lazy" />
+                      <img src="https://images.pexels.com/photos/4568698/pexels-photo-4568698.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Consolidamos cajas y verificamos" loading="lazy" />
                       <div class="carousel-overlay"></div>
                       <span class="carousel-badge">02</span>
                     </div>
@@ -216,7 +214,7 @@
                 <div class="carousel-slide">
                   <div class="carousel-card">
                     <div class="carousel-image">
-                      <img src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Envío internacional" loading="lazy" />
+                      <img src="https://images.pexels.com/photos/3075996/pexels-photo-3075996.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Envío marítimo internacional" loading="lazy" />
                       <div class="carousel-overlay"></div>
                       <span class="carousel-badge">03</span>
                     </div>
@@ -229,7 +227,7 @@
                 <div class="carousel-slide">
                   <div class="carousel-card">
                     <div class="carousel-image">
-                      <img src="https://images.pexels.com/photos/6995133/pexels-photo-6995133.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Entrega" loading="lazy" />
+                      <img src="https://images.pexels.com/photos/6995133/pexels-photo-6995133.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Entrega a domicilio" loading="lazy" />
                       <div class="carousel-overlay"></div>
                       <span class="carousel-badge">04</span>
                     </div>
@@ -336,12 +334,21 @@
           </div>
           <div class="routes-grid">
             <div class="route-card">
-              <h3>✈️ China &rarr; Maiquetía</h3>
-              <p>Ruta aérea para mercancía urgente y liviana.</p>
+              <h3>✈️ Envíos aéreos (Proximamente) </h3>
+              <p>Ruta aérea para mercancía urgente y liviana. China → Maiquetía.</p>
               <ul>
                 <li>📦 Productos de alto valor o urgencia</li>
-                <li>⏱️ ETA estimada: 7 - 12 días</li>
-                <li>💻 Ideal para muestras y electrónicos pequeños</li>
+                <li>⏱️ ETA estimada: 15 - 28 días</li>
+                <li>💻 Ideal para muestras y artículos pequeños</li>
+              </ul>
+            </div>
+            <div class="route-card">
+              <h3>🚢 Envíos marítimos</h3>
+              <p>Ruta marítima consolidada para carga comercial. China → Venezuela.</p>
+              <ul>
+                <li>📦 Ideal para volúmenes medios y altos</li>
+                <li>⏱️ ETA estimada: 70 - 90 días</li>
+                <li>💰 Tarifas por volumen</li>
               </ul>
             </div>
             <div class="route-card">
@@ -709,7 +716,7 @@
             }
 
             current = ((index % total) + total) % total;
-            var offset = -current * 100;
+            var offset = -current * (100 / total);
             track.style.transform = "translateX(" + offset + "%)";
             dots.forEach(function (d, i) {
               d.classList.toggle("active", i === current);
