@@ -657,16 +657,13 @@
         var CONFIG = {
           correoEmpresa: "contacto@pitalogistica.com",
           whatsappNumero: "584244494560",
-          intranetUrl: "https://intranet.pitalogistica.com",
+          intranetUrl: "https://app.pitalogistica.com/accounts/login/",
           supabaseUrl: "https://bpfjzvmtbwdlwtoqmutx.supabase.co",
           supabaseAnonKey: "sb_publishable_yHC0DOg3l5tYRgTrYGL3Eg_yvKjksQS"
         };
         var waf = document.getElementById("whatsappFloat");
         if (waf) waf.href = "https://wa.me/" + CONFIG.whatsappNumero;
-        var linkIntranet = document.getElementById("linkIntranet");
-        var linkIntranetHero = document.getElementById("linkIntranetHero");
-        if (linkIntranet && CONFIG.intranetUrl) linkIntranet.href = CONFIG.intranetUrl;
-        if (linkIntranetHero && CONFIG.intranetUrl) linkIntranetHero.href = CONFIG.intranetUrl;
+        
 
         /* Menú móvil */
         var menuToggle = document.getElementById("menuToggle");
