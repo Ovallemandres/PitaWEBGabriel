@@ -386,11 +386,11 @@
                   </tr>
                   <tr>
                     <td>5,00 – 9,99</td>
-                    <td><strong>$ 600</strong> USD</td>
+                    <td><strong>$ 625</strong> USD</td>
                   </tr>
                   <tr>
                     <td>10,00 o más</td>
-                    <td><strong>$ 580</strong> USD</td>
+                    <td><strong>$ 600</strong> USD</td>
                   </tr>
                 </tbody>
               </table>
@@ -527,6 +527,7 @@
                           step="0.01"
                           placeholder="Ej: 60"
                           class="air-largo"
+                          required
                         />
                       </div>
                       <div class="form-field">
@@ -537,6 +538,7 @@
                           step="0.01"
                           placeholder="Ej: 40"
                           class="air-ancho"
+                          required
                         />
                       </div>
                       <div class="form-field">
@@ -547,6 +549,7 @@
                           step="0.01"
                           placeholder="Ej: 50"
                           class="air-alto"
+                          required
                         />
                       </div>
                     </div>
@@ -569,6 +572,7 @@
                           step="0.01"
                           placeholder="Ej: 1200"
                           class="air-valor"
+                          required
                         />
                       </div>
                     </div>
@@ -1209,6 +1213,65 @@
 
                 if (airError) throw airError;
 
+                // Construir HTML del correo para la función swift-task
+                var paquetesHtml = paquetes
+                  .map(function (p) {
+                    return (
+                      "<li>" +
+                      "Paquete " + p.indice + ": " +
+                      (p.largo_cm || "-") + " x " +
+                      (p.ancho_cm || "-") + " x " +
+                      (p.alto_cm || "-") + " cm, " +
+                      "Peso: " + (p.peso_kg || "-") + " kg, " +
+                      "Valor: " + (p.valor_usd || "-") + " USD" +
+                      "</li>"
+                    );
+                  })
+                  .join("");
+
+                var htmlCorreo =
+                  "<h2>Nueva cotización aérea</h2>" +
+                  "<p><strong>Nombre:</strong> " + airNombre + "</p>" +
+                  "<p><strong>WhatsApp:</strong> " + airWhatsapp + "</p>" +
+                  "<p><strong>Tipo de entrega:</strong> " +
+                  (airTipoEntrega === "entrega_domicilio" ? "Entrega a domicilio" : "Retira en Almacén Valencia") +
+                  "</p>" +
+                  (airEstado && airCiudad
+                    ? "<p><strong>Ubicación:</strong> " + airCiudad + ", " + airEstado + "</p>"
+                    : "") +
+                  (descripcion
+                    ? "<p><strong>Descripción:</strong> " + descripcion + "</p>"
+                    : "") +
+                  "<h3>Paquetes</h3><ul>" + paquetesHtml + "</ul>";
+
+                // Enviar correo llamando la Edge Function.
+                // Nota: no usamos `fetch` directo porque tu endpoint exige `Authorization`.
+                try {
+                  var swiftResult = await supabaseAir.functions.invoke("swift-task", {
+                    body: {
+                      // Resend requiere `to`. En caso de que la Edge Function lea otra clave,
+                      // mandamos alias para evitar `to` undefined.
+                      to: "pagos@pitacompra.com",
+                      recipient: "pagos@pitacompra.com",
+                      email: "pagos@pitacompra.com",
+                      email_to: "pagos@pitacompra.com",
+                      subject: "Nueva cotización aérea desde la web",
+                      // Datos en texto (para que la Edge Function arme un `text` completo)
+                      nombre: airNombre,
+                      whatsapp: airWhatsapp,
+                      tipo_entrega: airTipoEntrega,
+                      estado: airTipoEntrega === "entrega_domicilio" ? airEstado : null,
+                      ciudad: airTipoEntrega === "entrega_domicilio" ? airCiudad : null,
+                      descripcion: descripcion || null,
+                      paquetes: paquetes,
+                      subject: "Nueva cotización aérea desde la web"
+                    }
+                  });
+                  console.log("swift-task invoke:", swiftResult);
+                } catch (swiftErr) {
+                  console.error("Error invocando swift-task:", swiftErr);
+                }
+
                 airForm.reset();
                 if (airEntregaDomicilioFields) airEntregaDomicilioFields.style.display = "none";
                 if (airSelectEstado) airSelectEstado.value = "";
@@ -1358,10 +1421,10 @@
               tarifa = 650;
               rangoTexto = "0,10 m³ a 4,99 m³";
             } else if (volumenFacturable >= 5 && volumenFacturable < 10) {
-              tarifa = 600;
+              tarifa = 625;
               rangoTexto = "5,00 m³ a 9,99 m³";
             } else {
-              tarifa = 580;
+              tarifa = 600;
               rangoTexto = "10,00 m³ o más";
             }
 
