@@ -53,5 +53,41 @@ CREATE POLICY "Solo autenticados pueden leer"
   TO authenticated
   USING (true);
 
--- 5. Índice para ordenar por fecha
 CREATE INDEX IF NOT EXISTS idx_cotizaciones_created_at ON cotizaciones (created_at DESC);
+
+-- ============================================================
+-- Tabla de cotizaciones para envíos aéreos
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS cotizaciones_aereas (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  created_at TIMESTAMPTZ DEFAULT now() NOT NULL,
+  nombre TEXT NOT NULL,
+  whatsapp TEXT NOT NULL,
+  tipo_entrega TEXT NOT NULL,
+  estado TEXT,
+  ciudad TEXT,
+  descripcion TEXT,
+  paquetes JSONB NOT NULL
+);
+
+-- Habilitar RLS para cotizaciones_aereas
+ALTER TABLE cotizaciones_aereas ENABLE ROW LEVEL SECURITY;
+
+-- Permitir INSERT público (formulario web) en cotizaciones_aereas
+CREATE POLICY "Permitir insert público aereo"
+  ON cotizaciones_aereas
+  FOR INSERT
+  TO anon
+  WITH CHECK (true);
+
+-- Solo usuarios autenticados pueden leer cotizaciones_aereas
+CREATE POLICY "Solo autenticados pueden leer aereo"
+  ON cotizaciones_aereas
+  FOR SELECT
+  TO authenticated
+  USING (true);
+
+-- Índice para ordenar por fecha en cotizaciones_aereas
+CREATE INDEX IF NOT EXISTS idx_cotizaciones_aereas_created_at
+  ON cotizaciones_aereas (created_at DESC);
