@@ -1128,7 +1128,7 @@
           }
 
           if (airForm && airFeedback) {
-            airForm.addEventListener("submit", function (e) {
+            airForm.addEventListener("submit", async function (e) {
               e.preventDefault();
               var airNombre = (document.getElementById("airNombre") || {}).value.trim();
               var airWhatsapp = (document.getElementById("airWhatsapp") || {}).value.trim();
@@ -1157,11 +1157,69 @@
                 return;
               }
 
-              airForm.reset();
-              if (airEntregaDomicilioFields) airEntregaDomicilioFields.style.display = "none";
-              if (airSelectEstado) airSelectEstado.value = "";
-              actualizarAirCiudades();
-              mostrarModal();
+              if (!CONFIG.supabaseUrl || !CONFIG.supabaseAnonKey) {
+                airFeedback.textContent = "Configura Supabase en CONFIG.";
+                airFeedback.style.color = "#dc2626";
+                return;
+              }
+
+              var paquetes = [];
+              if (airPackagesContainer) {
+                var packageNodes = airPackagesContainer.querySelectorAll(".air-package");
+                packageNodes.forEach(function (pkg, index) {
+                  var largo = (pkg.querySelector(".air-largo") || {}).value || "";
+                  var ancho = (pkg.querySelector(".air-ancho") || {}).value || "";
+                  var alto = (pkg.querySelector(".air-alto") || {}).value || "";
+                  var peso = (pkg.querySelector(".air-peso") || {}).value || "";
+                  var valor = (pkg.querySelector(".air-valor") || {}).value || "";
+
+                  if (largo || ancho || alto || peso || valor) {
+                    paquetes.push({
+                      indice: index + 1,
+                      largo_cm: largo,
+                      ancho_cm: ancho,
+                      alto_cm: alto,
+                      peso_kg: peso,
+                      valor_usd: valor
+                    });
+                  }
+                });
+              }
+
+              if (paquetes.length === 0) {
+                airFeedback.textContent = "Por favor ingresa al menos un paquete con sus medidas o peso/valor.";
+                airFeedback.style.color = "#dc2626";
+                return;
+              }
+
+              try {
+                var supabaseAir = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+                var descripcion = (document.getElementById("airDescripcion") || {}).value.trim();
+                var { error: airError } = await supabaseAir
+                  .from("cotizaciones_aereas")
+                  .insert({
+                    nombre: airNombre,
+                    whatsapp: airWhatsapp,
+                    tipo_entrega: airTipoEntrega,
+                    estado: airTipoEntrega === "entrega_domicilio" ? airEstado : null,
+                    ciudad: airTipoEntrega === "entrega_domicilio" ? airCiudad : null,
+                    descripcion: descripcion || null,
+                    paquetes: paquetes
+                  });
+
+                if (airError) throw airError;
+
+                airForm.reset();
+                if (airEntregaDomicilioFields) airEntregaDomicilioFields.style.display = "none";
+                if (airSelectEstado) airSelectEstado.value = "";
+                actualizarAirCiudades();
+                mostrarModal();
+              } catch (err) {
+                var msgAir = err && err.message ? err.message : String(err);
+                airFeedback.textContent = "Error: " + msgAir + " (Revisa que ejecutaste supabase-setup.sql)";
+                airFeedback.style.color = "#dc2626";
+                console.error("Supabase aéreo:", err);
+              }
             });
           }
         })();
