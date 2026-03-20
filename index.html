@@ -112,17 +112,11 @@
                 <div class="form-row">
                   <div class="form-field">
                     <label for="whatsapp">WhatsApp</label>
-                    <input id="whatsapp" type="tel" placeholder="+58 XXX XXX XXXX" />
+                    <input id="whatsapp" type="tel" placeholder="+58 XXX XXX XXXX" required />
                   </div>
-                  <div class="form-field">
-                    <label for="origen">Ciudad de Origen en China</label>
-                    <input id="origen" type="text" placeholder="Guangzhou, Yiwu, Shenzhen..." />
-                  </div>
-                </div>
-                <div class="form-row">
                   <div class="form-field">
                     <label for="tipo">Tipo de mercancía</label>
-                    <input id="tipo" type="text" placeholder="Ropa, electrónica, etc." />
+                    <input id="tipo" type="text" placeholder="Ropa, electrónica, etc." required />
                   </div>
                 </div>
                 <div class="form-field">
@@ -370,13 +364,14 @@
         <div class="container calculator-inner">
           <div class="calculator-copy">
             <div class="section-header section-header-left">
-              <h2>Calcula tu volumen y costo estimado</h2>
+              <h2>Calcula tu volumen y costo estimado (envíos marítimos)</h2>
               <p>
                 Ingresa las medidas de tu caja o carga en centímetros y el peso
-                total en kilogramos.
+                total en kilogramos para estimar el costo de tu envío marítimo
+                consolidado.
               </p>
             </div>
-            <p class="calculator-intro">La tarifa por metro cúbico mejora a medida que aumenta tu volumen consolidado:</p>
+            <p class="calculator-intro">Esta calculadora aplica únicamente para envíos marítimos. La tarifa por metro cúbico mejora a medida que aumenta tu volumen consolidado:</p>
             <div class="tariff-table-wrapper">
               <table class="tariff-table">
                 <thead>
@@ -392,11 +387,11 @@
                   </tr>
                   <tr>
                     <td>5,00 – 9,99</td>
-                    <td><strong>$ 600</strong> USD</td>
+                    <td><strong>$ 625</strong> USD</td>
                   </tr>
                   <tr>
                     <td>10,00 o más</td>
-                    <td><strong>$ 580</strong> USD</td>
+                    <td><strong>$ 600</strong> USD</td>
                   </tr>
                 </tbody>
               </table>
@@ -491,6 +486,165 @@
                 Usamos tus medidas para estimar el volumen en m³ y aplicar la tarifa por metro cúbico.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALCULADORA ENVÍOS AÉREOS -->
+      <section id="calculadora-aerea" class="section section-alt">
+        <div class="container calculator-inner">
+          <div class="calculator-copy">
+            <div class="section-header section-header-left">
+              <h2>Solicita tu cotización para envíos aéreos</h2>
+              <p>
+                Los envíos aéreos requieren una revisión más detallada. Completa
+                este formulario con la información de tu carga y un asesor te
+                contactará con una cotización personalizada.
+              </p>
+            </div>
+            <ul class="calculator-notes">
+              <li>
+                Si tienes varios paquetes, indica las medidas de cada uno o el
+                detalle que tengas disponible.
+              </li>
+              <li>
+                Mientras más precisa sea la información (peso, valor y
+                descripción), más ajustada será la cotización.
+              </li>
+            </ul>
+          </div>
+          <div class="calculator-card">
+            <form id="airQuoteForm" class="quote-form quote-form-air">
+              <div class="form-field">
+                <label>Paquetes (puedes agregar varios)</label>
+                <div id="airPackagesContainer">
+                  <div class="air-package">
+                    <div class="form-row calc-grid">
+                      <div class="form-field">
+                        <label> Largo (cm)</label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          placeholder="Ej: 60"
+                          class="air-largo"
+                          required
+                        />
+                      </div>
+                      <div class="form-field">
+                        <label>Ancho (cm)</label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          placeholder="Ej: 40"
+                          class="air-ancho"
+                          required
+                        />
+                      </div>
+                      <div class="form-field">
+                        <label>Alto (cm)</label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          placeholder="Ej: 50"
+                          class="air-alto"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form-row calc-grid">
+                      <div class="form-field">
+                        <label>Peso (kg)</label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          placeholder="Ej: 80"
+                          class="air-peso"
+                        />
+                      </div>
+                      <div class="form-field">
+                        <label>Valor del producto (USD)</label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          placeholder="Ej: 1200"
+                          class="air-valor"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" id="addAirPackage" class="btn btn-ghost btn-sm">
+                  + Agregar otro paquete
+                </button>
+              </div>
+              <div class="form-field">
+                <label for="airDescripcion">Descripción del producto</label>
+                <textarea
+                  id="airDescripcion"
+                  rows="3"
+                  placeholder="Ej: 4 cajas de ropa, 2 cajas de electrónicos, etc."
+                ></textarea>
+              </div>
+              <div class="form-field calc-entrega-field">
+                <label>Tipo de entrega</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="airTipoEntrega" value="retira_almacen" checked />
+                    <span>Retira en Almacén Valencia</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="airTipoEntrega" value="entrega_domicilio" />
+                    <span>Entrega a domicilio</span>
+                  </label>
+                </div>
+              </div>
+              <div id="airEntregaDomicilioFields" class="entrega-domicilio-fields" style="display: none;">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="airEstado">Estado</label>
+                    <select id="airEstado" class="form-select">
+                      <option value="">Selecciona un estado</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="airCiudad">Ciudad</label>
+                    <select id="airCiudad" class="form-select" disabled>
+                      <option value="">Primero selecciona un estado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="airNombre">Nombre completo</label>
+                  <input
+                    id="airNombre"
+                    type="text"
+                    placeholder="Tu nombre"
+                    required
+                  />
+                </div>
+                <div class="form-field">
+                  <label for="airWhatsapp">WhatsApp</label>
+                  <input
+                    id="airWhatsapp"
+                    type="tel"
+                    placeholder="+58 XXX XXX XXXX"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">
+                Solicitar cotización aérea
+              </button>
+              <p class="form-note" id="airFormFeedback"></p>
+            </form>
           </div>
         </div>
       </section>
@@ -737,6 +891,13 @@
           var btnSubmit = document.getElementById("btnEnviarCotizacion");
           var modal = document.getElementById("modalExito");
           var btnCerrar = document.getElementById("modalCerrar");
+          var airForm = document.getElementById("airQuoteForm");
+          var airFeedback = document.getElementById("airFormFeedback");
+          var airPackagesContainer = document.getElementById("airPackagesContainer");
+          var addAirPackageBtn = document.getElementById("addAirPackage");
+          var airEntregaDomicilioFields = document.getElementById("airEntregaDomicilioFields");
+          var airSelectEstado = document.getElementById("airEstado");
+          var airSelectCiudad = document.getElementById("airCiudad");
           var entregaDomicilioFields = document.getElementById("entregaDomicilioFields");
           var selectEstado = document.getElementById("estado");
           var selectCiudad = document.getElementById("ciudad");
@@ -749,6 +910,10 @@
             opt.value = est;
             opt.textContent = est;
             selectEstado && selectEstado.appendChild(opt);
+            if (airSelectEstado) {
+              var optAir = opt.cloneNode(true);
+              airSelectEstado.appendChild(optAir);
+            }
           });
 
           function actualizarCiudades() {
@@ -779,12 +944,49 @@
 
           selectEstado && selectEstado.addEventListener("change", actualizarCiudades);
 
+          function actualizarAirCiudades() {
+            if (!airSelectCiudad) return;
+            airSelectCiudad.innerHTML = "";
+            var estado = airSelectEstado && airSelectEstado.value;
+            if (!estado) {
+              var opt0 = document.createElement("option");
+              opt0.value = "";
+              opt0.textContent = "Primero selecciona un estado";
+              airSelectCiudad.appendChild(opt0);
+              airSelectCiudad.disabled = true;
+              return;
+            }
+            var ciudades = estadosCiudades[estado] || [];
+            var opt0 = document.createElement("option");
+            opt0.value = "";
+            opt0.textContent = "Selecciona una ciudad";
+            airSelectCiudad.appendChild(opt0);
+            ciudades.forEach(function (ciudad) {
+              var opt = document.createElement("option");
+              opt.value = ciudad;
+              opt.textContent = ciudad;
+              airSelectCiudad.appendChild(opt);
+            });
+            airSelectCiudad.disabled = false;
+          }
+
+          airSelectEstado && airSelectEstado.addEventListener("change", actualizarAirCiudades);
+
           document.querySelectorAll('input[name="tipoEntrega"]').forEach(function (radio) {
             radio.addEventListener("change", function () {
               var esDomicilio = this.value === "entrega_domicilio";
               if (entregaDomicilioFields) entregaDomicilioFields.style.display = esDomicilio ? "block" : "none";
               if (!esDomicilio && selectEstado) selectEstado.value = "";
               actualizarCiudades();
+            });
+          });
+
+          document.querySelectorAll('input[name="airTipoEntrega"]').forEach(function (radio) {
+            radio.addEventListener("change", function () {
+              var esDomicilio = this.value === "entrega_domicilio";
+              if (airEntregaDomicilioFields) airEntregaDomicilioFields.style.display = esDomicilio ? "block" : "none";
+              if (!esDomicilio && airSelectEstado) airSelectEstado.value = "";
+              actualizarAirCiudades();
             });
           });
 
@@ -820,7 +1022,6 @@
             var nombre = (document.getElementById("nombre") || {}).value.trim();
             var correo = (document.getElementById("correo") || {}).value.trim();
             var whatsapp = (document.getElementById("whatsapp") || {}).value.trim();
-            var origen = (document.getElementById("origen") || {}).value.trim();
             var tipo = (document.getElementById("tipo") || {}).value.trim();
             var peso = (document.getElementById("peso") || {}).value.trim();
             var volumen = (document.getElementById("volumen") || {}).value.trim();
@@ -848,6 +1049,16 @@
               feedback.style.color = "#dc2626";
               return;
             }
+            if (!whatsapp) {
+              feedback.textContent = "Por favor ingresa tu WhatsApp.";
+              feedback.style.color = "#dc2626";
+              return;
+            }
+            if (!tipo) {
+              feedback.textContent = "Por favor indica el tipo de mercancía.";
+              feedback.style.color = "#dc2626";
+              return;
+            }
             if (tipoEntrega === "entrega_domicilio" && (!estado || !ciudad)) {
               feedback.textContent = "Si eliges entrega a domicilio, selecciona estado y ciudad.";
               feedback.style.color = "#dc2626";
@@ -872,9 +1083,8 @@
                 .insert({
                   nombre: nombre,
                   correo: correo,
-                  whatsapp: whatsapp || null,
-                  origen: origen || null,
-                  tipo_mercancia: tipo || null,
+                  whatsapp: whatsapp,
+                  tipo_mercancia: tipo,
                   peso: peso || null,
                   volumen: volumen || null,
                   tipo_entrega: tipoEntrega,
@@ -902,6 +1112,177 @@
               }
             }
           });
+
+          if (addAirPackageBtn && airPackagesContainer) {
+            addAirPackageBtn.addEventListener("click", function () {
+              var firstPackage = airPackagesContainer.querySelector(".air-package");
+              if (!firstPackage) return;
+              var clone = firstPackage.cloneNode(true);
+              // Limpia los valores de los inputs clonados
+              Array.prototype.forEach.call(
+                clone.querySelectorAll("input"),
+                function (input) {
+                  input.value = "";
+                }
+              );
+              airPackagesContainer.appendChild(clone);
+            });
+          }
+
+          if (airForm && airFeedback) {
+            airForm.addEventListener("submit", async function (e) {
+              e.preventDefault();
+              var airNombre = (document.getElementById("airNombre") || {}).value.trim();
+              var airWhatsapp = (document.getElementById("airWhatsapp") || {}).value.trim();
+              var airTipoEntrega = (document.querySelector('input[name="airTipoEntrega"]:checked') || {}).value || "retira_almacen";
+              var airEstado = (airSelectEstado || {}).value || null;
+              var airCiudad = (airSelectCiudad || {}).value || null;
+
+              airFeedback.textContent = "";
+              airFeedback.className = "form-note";
+              airFeedback.style.color = "";
+
+              if (!airNombre) {
+                airFeedback.textContent = "Por favor ingresa tu nombre.";
+                airFeedback.style.color = "#dc2626";
+                return;
+              }
+              if (!airWhatsapp) {
+                airFeedback.textContent = "Por favor ingresa tu WhatsApp.";
+                airFeedback.style.color = "#dc2626";
+                return;
+              }
+
+              if (airTipoEntrega === "entrega_domicilio" && (!airEstado || !airCiudad)) {
+                airFeedback.textContent = "Si eliges entrega a domicilio, selecciona estado y ciudad.";
+                airFeedback.style.color = "#dc2626";
+                return;
+              }
+
+              if (!CONFIG.supabaseUrl || !CONFIG.supabaseAnonKey) {
+                airFeedback.textContent = "Configura Supabase en CONFIG.";
+                airFeedback.style.color = "#dc2626";
+                return;
+              }
+
+              var paquetes = [];
+              if (airPackagesContainer) {
+                var packageNodes = airPackagesContainer.querySelectorAll(".air-package");
+                packageNodes.forEach(function (pkg, index) {
+                  var largo = (pkg.querySelector(".air-largo") || {}).value || "";
+                  var ancho = (pkg.querySelector(".air-ancho") || {}).value || "";
+                  var alto = (pkg.querySelector(".air-alto") || {}).value || "";
+                  var peso = (pkg.querySelector(".air-peso") || {}).value || "";
+                  var valor = (pkg.querySelector(".air-valor") || {}).value || "";
+
+                  if (largo || ancho || alto || peso || valor) {
+                    paquetes.push({
+                      indice: index + 1,
+                      largo_cm: largo,
+                      ancho_cm: ancho,
+                      alto_cm: alto,
+                      peso_kg: peso,
+                      valor_usd: valor
+                    });
+                  }
+                });
+              }
+
+              if (paquetes.length === 0) {
+                airFeedback.textContent = "Por favor ingresa al menos un paquete con sus medidas o peso/valor.";
+                airFeedback.style.color = "#dc2626";
+                return;
+              }
+
+              try {
+                var supabaseAir = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+                var descripcion = (document.getElementById("airDescripcion") || {}).value.trim();
+                var { error: airError } = await supabaseAir
+                  .from("cotizaciones_aereas")
+                  .insert({
+                    nombre: airNombre,
+                    whatsapp: airWhatsapp,
+                    tipo_entrega: airTipoEntrega,
+                    estado: airTipoEntrega === "entrega_domicilio" ? airEstado : null,
+                    ciudad: airTipoEntrega === "entrega_domicilio" ? airCiudad : null,
+                    descripcion: descripcion || null,
+                    paquetes: paquetes
+                  });
+
+                if (airError) throw airError;
+
+                // Construir HTML del correo para la función swift-task
+                var paquetesHtml = paquetes
+                  .map(function (p) {
+                    return (
+                      "<li>" +
+                      "Paquete " + p.indice + ": " +
+                      (p.largo_cm || "-") + " x " +
+                      (p.ancho_cm || "-") + " x " +
+                      (p.alto_cm || "-") + " cm, " +
+                      "Peso: " + (p.peso_kg || "-") + " kg, " +
+                      "Valor: " + (p.valor_usd || "-") + " USD" +
+                      "</li>"
+                    );
+                  })
+                  .join("");
+
+                var htmlCorreo =
+                  "<h2>Nueva cotización aérea</h2>" +
+                  "<p><strong>Nombre:</strong> " + airNombre + "</p>" +
+                  "<p><strong>WhatsApp:</strong> " + airWhatsapp + "</p>" +
+                  "<p><strong>Tipo de entrega:</strong> " +
+                  (airTipoEntrega === "entrega_domicilio" ? "Entrega a domicilio" : "Retira en Almacén Valencia") +
+                  "</p>" +
+                  (airEstado && airCiudad
+                    ? "<p><strong>Ubicación:</strong> " + airCiudad + ", " + airEstado + "</p>"
+                    : "") +
+                  (descripcion
+                    ? "<p><strong>Descripción:</strong> " + descripcion + "</p>"
+                    : "") +
+                  "<h3>Paquetes</h3><ul>" + paquetesHtml + "</ul>";
+
+                // Enviar correo llamando la Edge Function.
+                // Nota: no usamos `fetch` directo porque tu endpoint exige `Authorization`.
+                try {
+                  var swiftResult = await supabaseAir.functions.invoke("swift-task", {
+                    body: {
+                      // Resend requiere `to`. En caso de que la Edge Function lea otra clave,
+                      // mandamos alias para evitar `to` undefined.
+                      to: "pagos@pitacompra.com",
+                      recipient: "pagos@pitacompra.com",
+                      email: "pagos@pitacompra.com",
+                      email_to: "pagos@pitacompra.com",
+                      subject: "Nueva cotización aérea desde la web",
+                      // Datos en texto (para que la Edge Function arme un `text` completo)
+                      nombre: airNombre,
+                      whatsapp: airWhatsapp,
+                      tipo_entrega: airTipoEntrega,
+                      estado: airTipoEntrega === "entrega_domicilio" ? airEstado : null,
+                      ciudad: airTipoEntrega === "entrega_domicilio" ? airCiudad : null,
+                      descripcion: descripcion || null,
+                      paquetes: paquetes,
+                      subject: "Nueva cotización aérea desde la web"
+                    }
+                  });
+                  console.log("swift-task invoke:", swiftResult);
+                } catch (swiftErr) {
+                  console.error("Error invocando swift-task:", swiftErr);
+                }
+
+                airForm.reset();
+                if (airEntregaDomicilioFields) airEntregaDomicilioFields.style.display = "none";
+                if (airSelectEstado) airSelectEstado.value = "";
+                actualizarAirCiudades();
+                mostrarModal();
+              } catch (err) {
+                var msgAir = err && err.message ? err.message : String(err);
+                airFeedback.textContent = "Error: " + msgAir + " (Revisa que ejecutaste supabase-setup.sql)";
+                airFeedback.style.color = "#dc2626";
+                console.error("Supabase aéreo:", err);
+              }
+            });
+          }
         })();
 
         /* Calculadora de costo por m³ */
@@ -1038,10 +1419,10 @@
               tarifa = 650;
               rangoTexto = "0,10 m³ a 4,99 m³";
             } else if (volumenFacturable >= 5 && volumenFacturable < 10) {
-              tarifa = 600;
+              tarifa = 625;
               rangoTexto = "5,00 m³ a 9,99 m³";
             } else {
-              tarifa = 580;
+              tarifa = 600;
               rangoTexto = "10,00 m³ o más";
             }
 
