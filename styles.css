@@ -194,8 +194,10 @@ button {
 .nav-links {
   flex: 1;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 24px;
+  row-gap: 8px;
+  gap: 18px 24px;
   justify-content: center;
   min-width: 0;
 }
@@ -1602,6 +1604,22 @@ button {
   color: var(--text-soft);
   font-size: 0.98rem;
   max-width: 52ch;
+}
+
+.tidycal-app-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.tidycal-app-logo {
+  flex-shrink: 0;
+  width: 1.15em;
+  height: 1.15em;
+  object-fit: contain;
+  display: block;
 }
 
 .tidycal-perks {
