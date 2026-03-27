@@ -381,7 +381,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>0,10 – 4,99</td>
+                    <td>0,0077 – 4,99</td>
                     <td><strong>$ 650</strong> USD</td>
                   </tr>
                   <tr>
@@ -396,7 +396,7 @@
               </table>
             </div>
             <ul class="calculator-notes">
-              <li>Volumen mínimo facturable: 0,10 m³.</li>
+              <li>Volumen mínimo facturable: <strong>0,0077 m³</strong>.</li>
               <li>Si tu carga supera 400 kg/m³, se considera carga especial. Solicita cotización por WhatsApp.</li>
             </ul>
           </div>
@@ -1381,7 +1381,8 @@
               return;
             }
 
-            var volumenFacturable = volumeM3 < 0.1 ? 0.1 : volumeM3;
+            var VOL_MIN_M3 = 0.0077;
+            var volumenFacturable = volumeM3 < VOL_MIN_M3 ? VOL_MIN_M3 : volumeM3;
             var densidad = peso / volumeM3; // kg por m³
             var volumenMostrado = Math.round(volumeM3 * 1000) / 1000;
             var densidadMostrada = Math.round(densidad);
@@ -1417,10 +1418,10 @@
             var tarifa;
             var rangoTexto;
 
-            if (volumenFacturable >= 0.1 && volumenFacturable < 5) {
+            if (volumenFacturable < 5) {
               tarifa = 650;
-              rangoTexto = "0,10 m³ a 4,99 m³";
-            } else if (volumenFacturable >= 5 && volumenFacturable < 10) {
+              rangoTexto = "0,0077 m³ a 4,99 m³";
+            } else if (volumenFacturable < 10) {
               tarifa = 625;
               rangoTexto = "5,00 m³ a 9,99 m³";
             } else {
@@ -1507,8 +1508,8 @@
 
             var totalConDomicilio = total + deliverySurcharge;
 
-            var volLabel = volumeM3 < 0.1
-              ? "Volumen (mín. facturable 0,10 m³)"
+            var volLabel = volumeM3 < VOL_MIN_M3
+              ? "Volumen (mín. facturable 0,0077 m³)"
               : "Volumen estimado";
             var html =
               '<div class="result-main">' +
@@ -1516,7 +1517,7 @@
               '    <div class="result-label">' + volLabel + '</div>' +
               '    <div class="result-value">' +
               formatNumber(volumenMostrado, 3) +
-              " m³" + (volumeM3 < 0.1 ? " &rarr; 0,100 m³" : "") + "</div>" +
+              " m³" + (volumeM3 < VOL_MIN_M3 ? " &rarr; 0,0077 m³" : "") + "</div>" +
               "  </div>" +
               '  <div>' +
               '    <div class="result-label">Tarifa por m³</div>' +
@@ -1564,8 +1565,8 @@
             html += "</div>";
 
             var notaBase =
-              (volumeM3 < 0.1
-                ? "Se aplicó el volumen mínimo facturable (0,10 m³). "
+              (volumeM3 < VOL_MIN_M3
+                ? "Se aplicó el volumen mínimo facturable (0,0077 m³). "
                 : "") +
               "Este cálculo es solo referencial. El monto final se confirma una vez recibida y verificada la carga en nuestro almacén.";
 
