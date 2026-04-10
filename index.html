@@ -175,7 +175,14 @@
               <img src="./assets/pita-express.png" alt="Pita Express" class="btn-pita-logo" />
               Pita Compra
             </a>
-            <a class="btn btn-link-intranet" href="#" id="linkIntranet" target="_blank" rel="noopener noreferrer" title="Intranet Pita Logística">
+            <a
+              class="btn btn-link-intranet"
+              href="https://app.pitalogistica.com/accounts/login/"
+              id="linkIntranet"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Intranet Pita Logística"
+            >
               Intranet
             </a>
             <a class="btn btn-outline" href="#cotizar">Cotizar</a>
@@ -1024,11 +1031,14 @@
         document.getElementById("year").textContent =
           new Date().getFullYear();
 
+        /* URL de login (debe coincidir con href del botón #linkIntranet en el header) */
+        var INTRANET_LOGIN_URL = "https://app.pitalogistica.com/accounts/login/";
+
         /* Configuración: reemplaza con tus datos reales */
         var CONFIG = {
           correoEmpresa: "contacto@pitalogistica.com",
           whatsappNumero: "584244494560",
-          intranetUrl: "https://app.pitalogistica.com/accounts/login/",
+          intranetUrl: INTRANET_LOGIN_URL,
           supabaseUrl: "https://bpfjzvmtbwdlwtoqmutx.supabase.co",
           supabaseAnonKey: "sb_publishable_yHC0DOg3l5tYRgTrYGL3Eg_yvKjksQS"
         };
@@ -1036,8 +1046,8 @@
         if (waf) waf.href = "https://wa.me/" + CONFIG.whatsappNumero;
         var linkIntranet = document.getElementById("linkIntranet");
         var linkIntranetHero = document.getElementById("linkIntranetHero");
-        if (linkIntranet && CONFIG.intranetUrl) linkIntranet.href = CONFIG.intranetUrl;
-        if (linkIntranetHero && CONFIG.intranetUrl) linkIntranetHero.href = CONFIG.intranetUrl;
+        if (linkIntranet) linkIntranet.href = INTRANET_LOGIN_URL;
+        if (linkIntranetHero) linkIntranetHero.href = INTRANET_LOGIN_URL;
 
         /* Menú móvil */
         var menuToggle = document.getElementById("menuToggle");
